@@ -8,7 +8,7 @@ import flixel.util.FlxColor;
 
 class OptionsSubState extends MusicBeatSubstate
 {
-	var textMenuItems:Array<String> = ['Master Volume', 'Sound Volume', 'Controls'];
+	var textMenuItems:Array<String> = ['Controls', 'Preferences'];
 
 	var selector:FlxSprite;
 	var curSelected:Int = 0;
@@ -19,7 +19,7 @@ class OptionsSubState extends MusicBeatSubstate
 	{
 		super();
 
-		grpOptionsTexts = new FlxTypedGroup<FlxText>();
+		grpOptionsTexts = new FlxTypedGroup<Alphabet>();
 		add(grpOptionsTexts);
 
 		selector = new FlxSprite().makeGraphic(5, 5, FlxColor.RED);
@@ -27,7 +27,7 @@ class OptionsSubState extends MusicBeatSubstate
 
 		for (i in 0...textMenuItems.length)
 		{
-			var optionText:FlxText = new FlxText(20, 20 + (i * 50), 0, textMenuItems[i], 32);
+			var optiontext:Alphabet = new Alphabet(20, 20 + (i * 100), textMenuItens[i], true, false);
 			optionText.ID = i;
 			grpOptionsTexts.add(optionText);
 		}
@@ -49,7 +49,7 @@ class OptionsSubState extends MusicBeatSubstate
 		if (curSelected >= textMenuItems.length)
 			curSelected = 0;
 
-		grpOptionsTexts.forEach(function(txt:FlxText)
+		grpOptionsTexts.forEach(function(txt:Alphabet)
 		{
 			txt.color = FlxColor.WHITE;
 
