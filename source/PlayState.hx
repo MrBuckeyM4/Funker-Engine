@@ -203,6 +203,15 @@ class PlayState extends MusicBeatState
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
 
+    try{
+		          if save(save.data.options == null){
+		                         save.data.options = new Array<String>();
+		                         save.data.options[0] = "";
+		    }
+	        }catch[e]{
+	               trace("This did not work");
+	        }
+
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 
@@ -1846,6 +1855,12 @@ class PlayState extends MusicBeatState
 		#if !debug
 		perfectMode = false;
 		#end
+
+        if (save.data.options.cotains("OldIcon")){
+                iconP1.animation.play('bf-old');
+        }else{
+                iconP1.animation.play(SONG.player1);
+         }
 
 		if (FlxG.keys.justPressed.NINE)
 		{
